@@ -13,16 +13,14 @@ import React from 'react';
 import T from 'prop-types';
 import { View, Text, TouchableOpacity, TextInput, Button } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons/index';
-import { Icon } from './src/components';
 import { durationToStr } from './src/utils/dateHelper';
-import s from './src/styles';
+const s = require('./src/styles');
 import { colors } from './src/styles';
 
 
 export default class App extends React.Component {
 
-  constructor () {
-    this.state = {
+state = {
       recording: null,
       isRecording: false,
       durationMillis: 0,
@@ -30,7 +28,7 @@ export default class App extends React.Component {
       fileUrl: null,
       audioName: '',
     }
-  }
+  
 
   async setAudioMode ({ allowsRecordingIOS }) {
         await Audio.setAudioModeAsync({
@@ -118,87 +116,81 @@ export default class App extends React.Component {
     }
   
     render () {
-      if (this.state.isDoneRecording) {
-        return (
-          <View style={s.inputContainer}>
-            <TouchableOpacity
-              onPress={this.onCancelSave}
-              style={s.cancelCross}
-            >
-              <Icon
-                size={36}
-                color={colors.red}
-                IconSet={Ionicons}
-                iconName="md-close"
-              />
-            </TouchableOpacity>
+    //   if (this.state.isDoneRecording) {
+    //     return (
+    //       <View >
+    //         <TouchableOpacity
+    //           onPress={this.onCancelSave}
+              
+    //         >
+    //           {/* <Icon
+    //             size={36}
+    //             color={colors.red}
+    //             IconSet={Ionicons}
+    //             iconName="md-close"
+    //           /> */}
+    //           <Button title="click me" onPress={() => {console.log('hello world')}}/>
+    //         </TouchableOpacity>
     
-            <TextInput
-              style={s.inputStyle}
-              placeholder="Give a name for your audio"
-              value={this.state.audioName}
-              onChangeText={this.setAudioName}
-              underlineColorAndroid={colors.transparent}
-              autoCorrect={false}
-              onSubmitEditing={this.onSubmit}
-              returnKeyType="done"
-              autoFocus
-            />
+    //         <TextInput
+              
+    //           placeholder="Give a name for your audio"
+    //           value={this.state.audioName}
+    //           onChangeText={this.setAudioName}
+    //           underlineColorAndroid={colors.transparent}
+    //           autoCorrect={false}
+    //           onSubmitEditing={this.onSubmit}
+    //           returnKeyType="done"
+    //           autoFocus
+    //         />
     
-            <Button
-              textStyle={s.submitText}
-              buttonStyle={s.submitButton}
-              title="Continue"
-              onPress={this.onSubmit}
-              disabled={!this.state.audioName}
-            />
-          </View>
-        );
-      } else if (this.state.isRecording) {
-        return (
-          <View style={s.container}>
+    //         <Button
+              
+    //           buttonStyle={s.submitButton}
+    //           title="Continue"
+    //           onPress={this.onSubmit}
+    //           disabled={!this.state.audioName}
+    //         />
+    //       </View>
+    //     );
+    //   } else if (this.state.isRecording) {
+    //     return (
+    //       <View >
     
-            <View style={s.durationContainer}>
-              <Text style={s.recordingText}>Recording Audio</Text>
-              <Text style={s.durationText}>
-                {durationToStr(this.state.durationMillis)}
-              </Text>
-            </View>
+    //         <View >
+    //           <Text >Recording Audio</Text>
+    //           <Text >
+    //             {durationToStr(this.state.durationMillis)}
+    //           </Text>
+    //         </View>
     
-            <TouchableOpacity
-              style={[s.recordButton, s.recordingBackground]}
-              onPress={this.onEndRecording}
-            >
-              <Icon
-                size={100}
-                color={colors.audio.recording}
-                IconSet={MaterialIcons}
-                iconName="stop"
-                iconStyle={[s.recordIcon]}
-              />
-            </TouchableOpacity>
+    //         <TouchableOpacity
+              
+    //           onPress={this.onEndRecording}
+    //         >
+             
+    //           <Button title="clicker" onPress={() => {console.log('hello world')}}/>
+    //         </TouchableOpacity>
     
-          </View>
-        );
-      }
+    //       </View>
+    //     );
+    //   }
     
-      return (
-        <View style={s.container}>
-          <TouchableOpacity
-            style={[s.recordButton, s.startRecordButton]}
-            onPress={this.onStartRecording}
-          >
-            <Icon
-              size={50}
-              color={colors.audio.startRecordingIcon}
-              IconSet={MaterialIcons}
-              iconName="keyboard-voice"
-              iconStyle={[s.recordIcon]}
-            />
-          </TouchableOpacity>
-        </View>
-      );
-    };
+    //   return (
+    //     <View >
+       
+    //       <TouchableOpacity
+           
+    //         onPress={this.onStartRecording}
+    //       >
+            
+    //         <Button title='hey click!' onPress={() => {console.log('hello world')}}/>
+    //       </TouchableOpacity>
+    //     </View>
+    //   );
+    
+    return (<Button title='hey click!' onPress={() => {console.log('hello world')}}/>)
+};
     
 }
 
